@@ -106,7 +106,7 @@ def play
     turn until over?
     won? ? puts("Congratulations #{winner}!") : puts("Cat's Game!")
     puts "Would you like to play again? (Y or N)"
-    if gets.strip.downcase == "y" ||  gets.strip.downcase == "yes" 
+    if gets.strip.downcase == "y"
     play
   else
    puts "Goodbye"
