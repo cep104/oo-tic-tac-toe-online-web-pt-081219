@@ -106,7 +106,7 @@ def play
     # Play until someone wins or there is a draw
     turn until over?
     # Congratulate the winner
-    won? ? puts("Congratulations #{winner}!") : puts("Cat's Game!")
+    won? ? puts("Congratulations!") : puts("Cat's Game!")
     # Ask if they'd like to play again
     puts "Would you like to play again? (Y or N)"
     # If yes, then #play again
