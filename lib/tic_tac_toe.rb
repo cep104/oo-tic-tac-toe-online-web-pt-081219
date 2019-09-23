@@ -57,7 +57,7 @@ WIN_COMBINATIONS = [
 
 
     def turn
-    puts "please enter a number 1-9:"
+    puts "Player #{current_player}, please enter a number 1-9:"
     input = gets.chomp
     index = input_to_index(input)
     cp = current_player
