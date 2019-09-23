@@ -104,7 +104,7 @@ def winner
 def play
     @board
     turn until over?
-    won? ? puts("Congratulations #{winner}!") : puts("Cat's Game!")
+    won? ? puts("You Win!") : puts("Tie!")
     puts "Would you like to play again? (Y or N)"
     if gets.strip.downcase == "y"
     play
