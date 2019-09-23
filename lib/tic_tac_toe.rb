@@ -102,16 +102,16 @@ def winner
   end
 
 def play
-    @board
-    turn until over?
-    won? ? puts("You Win!") : puts("Tie!")
-    puts "Would you like to play again? (Y or N)"
-    if gets.chomp.downcase == "y"
-    play
-  else
-   puts "Goodbye"
+    until over?
+      turn
+    end
+
+    if won? 
+      puts "Congratulations #{winner}!"
+    elsif draw?
+      puts "Cats Game!"
+    end
   end
-end
 
 
 
