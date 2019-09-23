@@ -88,6 +88,10 @@ WIN_COMBINATIONS = [
   def draw?
     !won? && full?
   end
+  
+  def over?
+    won? || draw?
+  end
 
 
 
