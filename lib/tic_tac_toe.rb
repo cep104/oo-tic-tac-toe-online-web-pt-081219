@@ -1,7 +1,7 @@
 class TicTacToe
 
   def initialize(board = nil)
-    @board = board || Array.new(9, " ")
+    @board = Array.new(9, " ")
   end
 
   def turn
@@ -59,12 +59,6 @@ class TicTacToe
   
   
   WIN_COMBINATIONS = [
-    #Board layout
-    # 0 | 1 | 2
-    #-----------
-    # 3 | 4 | 5
-    #-----------
-    # 6 | 7 | 8
 
     [0,1,2], # Top row
     [3,4,5],  # Middle row
