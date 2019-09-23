@@ -92,6 +92,14 @@ WIN_COMBINATIONS = [
   def over?
     won? || draw?
   end
+  
+def winner
+    if won?
+      @board[won?[0]] == "X" ? "X" : "O"
+    else
+      nil
+    end
+  end
 
 
 
