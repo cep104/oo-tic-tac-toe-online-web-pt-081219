@@ -102,7 +102,7 @@ def winner
   end
 
 def play
-    @board = Array.new(9, " ")
+    @board
     # Play until someone wins or there is a draw
     turn until over?
     # Congratulate the winner
