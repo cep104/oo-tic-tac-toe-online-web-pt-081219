@@ -81,6 +81,9 @@ WIN_COMBINATIONS = [
     return a || b
   end
   
+  def full?
+    !@board.any?{|x| x == "" || x == " "}
+  end
 
 
 
