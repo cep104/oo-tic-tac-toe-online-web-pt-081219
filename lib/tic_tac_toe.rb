@@ -4,19 +4,13 @@ class TicTacToe
     @board = Array.new(9, " ")
   end
 
-  def turn
-    puts "Player #{current_player}, please enter a number 1-9:"
-    input = gets.strip
-    index = input_to_index(input)
-    cp = current_player
-    if valid_move?(index)
-      move(index, cp)
-      display_board
-    else
-      turn
-    end
+  def display_board
+    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
+    puts "-----------"
+    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+    puts "-----------"
+    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
-
   
   def input_to_index(input)
     input.to_i - 1
@@ -48,15 +42,20 @@ class TicTacToe
   end
 
  
-  def display_board
-    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
-    puts "-----------"
-    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
-    puts "-----------"
-    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
-  end
 
-  
+
+    def turn
+    puts "Player #{current_player}, please enter a number 1-9:"
+    input = gets.chomp
+    index = input_to_index(input)
+    cp = current_player
+    if valid_move?(index)
+      move(index, cp)
+      display_board
+    else
+      turn
+    end
+  end
   
   WIN_COMBINATIONS = [
 
