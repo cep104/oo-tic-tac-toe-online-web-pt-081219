@@ -26,19 +26,25 @@ WIN_COMBINATIONS = [
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
   
-  def input_to_index(input)
-    input.to_i - 1
-    # takes the users input turns it into an integer 
-    # and -1 because numbers in ruby count from 0
+  # def input_to_index(input)
+  #   input.to_i - 1
+  #   # takes the users input turns it into an integer 
+  #   # and -1 because numbers in ruby count from 0
+  # end
+  def input_to_index(string)
+    @choice = string.to_i-1
+   
   end
-
   
   def valid_move?(index)
     index.between?(0,8) && !position_taken?(index)
     # does the index exist on the board and is the position taken
   end
 
-  
+#   def valid_move?(input_to_index)
+#     !position_taken?(input_to_index) && @board[input_to_index]
+    
+# end
   def position_taken?(index)
     !(@board[index].nil? || @board[index] == " ")
     # validation logic, is the position taken? takes in the
@@ -46,15 +52,18 @@ WIN_COMBINATIONS = [
   end
 
   
-  def move(index, token = "X")
-    @board[index] = token
+  # def move(index, token = "X")
+  #   @board[index] = token
     
-    # takes in an index and a token(default to X)
-    # takes that boards position and puts the given token
-    # I am trying to put something in this board at this postion.
-    # ex. colors = ["Red", nil, "Black"]
-    #colors[1] = "Yellow" would replace nil
-  end
+  #   # takes in an index and a token(default to X)
+  #   # takes that boards position and puts the given token
+  #   # I am trying to put something in this board at this postion.
+  #   # ex. colors = ["Red", nil, "Black"]
+  #   #colors[1] = "Yellow" would replace nil
+  # end
+  def move(input_to_index, player)
+    @board[input_to_index] = player
+end
 
  
   def current_player
@@ -76,23 +85,38 @@ WIN_COMBINATIONS = [
  
 
 
-    def turn
-    puts "please enter a number 1-9:"
-    input = gets.chomp
-    index = input_to_index(input)
-    # have to assign it to a variable because it doesnt automaticly save.
-    # doesnt change the inheared refrence you have to capture the value
-    cp = current_player
-    if valid_move?(index)
-      move(index, cp)
-      display_board
-    else
-      puts 'that is invalid try again.'
-      turn
-      # if move isn't valid go back to the begining of turn and start over
-    end
-  end
+  #   def turn
+  #   puts "please enter a number 1-9:"
+  #   input = gets.chomp
+  #   index = input_to_index(input)
+  #   # have to assign it to a variable because it doesnt automaticly save.
+  #   # doesnt change the inheared refrence you have to capture the value
+  #   cp = current_player
+  #   if valid_move?(index)
+  #     move(index, cp)
+  #     display_board
+  #   else
+  #     puts 'that is invalid try again.'
+  #     turn
+  #     # if move isn't valid go back to the begining of turn and start over
+  #   end
+  # end
   
+  def turn 
+        
+    choice = gets.chomp.to_i
+    
+    position = input_to_index(choice)
+    if valid_move?(position)
+        #player_token = current_player
+        move(position, current_player)
+        display_board
+    else
+        turn
+    end
+   
+end 
+
   def won?
     
     a = WIN_COMBINATIONS.find{
@@ -129,6 +153,13 @@ WIN_COMBINATIONS = [
   #end
   # winning_combo
   # end
+  def won?(board)
+    WIN_COMBINATIONS.detect do |combo|
+      board[combo[0]] == board[combo[1]] &&
+        board[combo[1]] == board[combo[2]] &&
+        position_taken?(board, combo[0])
+    end
+  end
   # needs to be dynamic not static 
   # starts off with winning_combo being nil
   #in the event that during the loop no one has a winning combo it still returns nil
